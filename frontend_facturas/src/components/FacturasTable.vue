@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/valid-v-slot -->
 <template>
     <v-container fluid>
       <v-card>
@@ -53,14 +54,14 @@
         </v-card>
       </v-dialog>
     </v-container>
-  </template>
+</template>
   
-  <script setup>
+<script setup>
     import CreateFactura from '@/components/CreateFactura.vue'
     import EditarFactura from '@/components/EditarFactura.vue'  
 
   import { ref, reactive } from 'vue';
-  import { useDataFetching } from '@/hooks/useDataFetching';
+  import { useDataFetching } from '@/composables/useDataFetching';
   import facturaService from '@/services/factura.service';
 
   
@@ -71,12 +72,6 @@
   const isEditing = ref(false);
   const currentFactura = reactive({
     id_factura: null,
-    numero_factura: '',
-    id_cliente: '',
-    fecha: '',
-    subtotal: '',
-    iva: '',
-    total: ''
   });
   
   const headers = [
@@ -92,12 +87,6 @@
   function openDialog() {
     isEditing.value = false;
     currentFactura.id_factura = null;
-    currentFactura.numero_factura = '';
-    currentFactura.id_cliente = '';
-    currentFactura.fecha = '';
-    currentFactura.subtotal = '';
-    currentFactura.iva = '';
-    currentFactura.total = '';
     dialog.value = true;
   }
   
@@ -111,16 +100,6 @@
     dialog.value = true;
   }
   
-  function saveFactura() {
-    if (isEditing.value) {
-      // Call API to update factura
-      console.log('Updating factura:', currentFactura);
-    } else {
-      // Call API to create new factura
-      console.log('Creating factura:', currentFactura);
-    }
-    closeDialog();
-  }
   
   async function deleteFactura(id) {
     try {

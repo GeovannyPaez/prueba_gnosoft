@@ -193,14 +193,6 @@ const fetchFactura = async (id) => {
   }
 };
 
-const addDetalle = () => {
-  form.value.detalles.push({
-    id_detalle: null, // El id será asignado por el backend si es nuevo
-    id_articulo: null,
-    cantidad: 1,
-    precio_unitario: 0.0,
-  });
-};
 
 const onChageArticulo = (id_articulo, index) => {
   const articuloSeleccionado = articulos.value.find(articulo => articulo.id_articulo === id_articulo);
